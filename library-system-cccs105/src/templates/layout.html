@@ -58,5 +58,39 @@
             });
         });
     </script>
+
+    <!-- DELETE MODAL -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+        <div class="modal-icon">
+            <i class="fas fa-trash-alt"></i>
+        </div>
+        <div class="modal-title">Are you sure?</div>
+        <div class="modal-message">This action cannot be undone. The record will be permanently deleted.</div>
+        <div class="modal-buttons">
+            <button class="modal-cancel" onclick="closeModal()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+            <a id="confirmDelete" href="#" class="modal-confirm">
+                <i class="fas fa-trash"></i> Yes, Delete
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete(url) {
+    document.getElementById('confirmDelete').href = url;
+    document.getElementById('deleteModal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('deleteModal').classList.remove('active');
+}
+
+document.getElementById('deleteModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+</script>
 </body>
 </html>

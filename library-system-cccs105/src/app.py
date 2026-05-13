@@ -124,16 +124,30 @@ def members():
 def add_member():
     if not session.get("logged_in"):
         return redirect("/")
+    error = None
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
         phone = request.form["phone"]
-        cursor = db.cursor()
-        cursor.execute("INSERT INTO members (name, email, phone) VALUES (%s, %s, %s)",
-                      (name, email, phone))
-        db.commit()
-        return redirect("/members")
-    return render_template("add_member.html")
+
+        # Validate name
+        if not name.replace(" ", "").isalpha():
+            error = "Name must contain letters only!"
+        # Validate email
+        elif "@" not in email or "." not in email.split("@")[-1]:
+            error = "Please enter a valid email address!"
+        # Validate phone
+        elif not phone.isdigit():
+            error = "Phone number must contain numbers only!"
+        elif len(phone) > 12:
+            error = "Phone number must not exceed 12 digits!"
+        else:
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO members (name, email, phone) VALUES (%s, %s, %s)",
+                          (name, email, phone))
+            db.commit()
+            return redirect("/members")
+    return render_template("add_member.html", error=error)
 
 @app.route("/edit_member/<int:id>", methods=["GET", "POST"])
 def edit_member(id):

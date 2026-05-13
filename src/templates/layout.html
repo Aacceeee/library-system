@@ -30,8 +30,67 @@
             </nav>
         </div>
         <div class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash flash-{{ category }}">
+                                <i class="fas fa-check-circle"></i>
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
             {% block content %}{% endblock %}
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const flashMessages = document.querySelectorAll(".flash");
+            flashMessages.forEach(function (message) {
+                setTimeout(function () {
+                    message.classList.add("flash-hide");
+                    setTimeout(function () {
+                        message.remove();
+                    }, 300);
+                }, 2500);
+            });
+        });
+    </script>
+
+    <!-- DELETE MODAL -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+        <div class="modal-icon">
+            <i class="fas fa-trash-alt"></i>
+        </div>
+        <div class="modal-title">Are you sure?</div>
+        <div class="modal-message">This action cannot be undone. The record will be permanently deleted.</div>
+        <div class="modal-buttons">
+            <button class="modal-cancel" onclick="closeModal()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+            <a id="confirmDelete" href="#" class="modal-confirm">
+                <i class="fas fa-trash"></i> Yes, Delete
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete(url) {
+    document.getElementById('confirmDelete').href = url;
+    document.getElementById('deleteModal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('deleteModal').classList.remove('active');
+}
+
+document.getElementById('deleteModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+</script>
 </body>
 </html>

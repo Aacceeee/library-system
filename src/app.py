@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 import mysql.connector
 from datetime import date
 
@@ -81,6 +81,7 @@ def add_book():
         cursor.execute("INSERT INTO books (title, author, genre, quantity) VALUES (%s, %s, %s, %s)",
                       (title, author, genre, quantity))
         db.commit()
+        flash("Book added successfully.", "success")
         return redirect("/books")
     return render_template("add_book.html")
 
@@ -97,6 +98,7 @@ def edit_book(id):
         cursor.execute("UPDATE books SET title=%s, author=%s, genre=%s, quantity=%s WHERE book_id=%s",
                       (title, author, genre, quantity, id))
         db.commit()
+        flash("Book updated successfully.", "success")
         return redirect("/books")
     cursor.execute("SELECT * FROM books WHERE book_id=%s", (id,))
     book = cursor.fetchone()
@@ -124,16 +126,31 @@ def members():
 def add_member():
     if not session.get("logged_in"):
         return redirect("/")
+    error = None
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
         phone = request.form["phone"]
-        cursor = db.cursor()
-        cursor.execute("INSERT INTO members (name, email, phone) VALUES (%s, %s, %s)",
-                      (name, email, phone))
-        db.commit()
-        return redirect("/members")
-    return render_template("add_member.html")
+
+        # Validate name
+        if not name.replace(" ", "").isalpha():
+            error = "Name must contain letters only!"
+        # Validate email
+        elif "@" not in email or "." not in email.split("@")[-1]:
+            error = "Please enter a valid email address!"
+        # Validate phone
+        elif not phone.isdigit():
+            error = "Phone number must contain numbers only!"
+        elif len(phone) > 12:
+            error = "Phone number must not exceed 12 digits!"
+        else:
+            cursor = db.cursor()
+            cursor.execute("INSERT INTO members (name, email, phone) VALUES (%s, %s, %s)",
+                          (name, email, phone))
+            db.commit()
+            flash("Member added successfully.", "success")
+            return redirect("/members")
+    return render_template("add_member.html", error=error)
 
 @app.route("/edit_member/<int:id>", methods=["GET", "POST"])
 def edit_member(id):
@@ -147,6 +164,7 @@ def edit_member(id):
         cursor.execute("UPDATE members SET name=%s, email=%s, phone=%s WHERE member_id=%s",
                       (name, email, phone, id))
         db.commit()
+        flash("Member updated successfully.", "success")
         return redirect("/members")
     cursor.execute("SELECT * FROM members WHERE member_id=%s", (id,))
     member = cursor.fetchone()
@@ -188,6 +206,7 @@ def add_borrowing():
         cursor.execute("INSERT INTO borrowings (book_id, member_id, borrow_date, return_date) VALUES (%s, %s, %s, %s)",
                       (book_id, member_id, borrow_date, return_date))
         db.commit()
+        flash("Borrowing record added successfully.", "success")
         return redirect("/borrowings")
     cursor.execute("SELECT * FROM books")
     books = cursor.fetchall()
@@ -208,6 +227,7 @@ def edit_borrowing(id):
         cursor.execute("UPDATE borrowings SET book_id=%s, member_id=%s, borrow_date=%s, return_date=%s WHERE borrow_id=%s",
                       (book_id, member_id, borrow_date, return_date, id))
         db.commit()
+        flash("Borrowing record updated successfully.", "success")
         return redirect("/borrowings")
     cursor.execute("SELECT * FROM borrowings WHERE borrow_id=%s", (id,))
     borrowing = cursor.fetchone()

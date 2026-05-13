@@ -37,9 +37,7 @@
                 <td>{{ b[3] }}</td>
                 <td>{{ b[4] }}</td>
                 <td>
-                    {% if b[5] == 'returned' %}
-                        <span class="badge badge-returned">Returned</span>
-                    {% elif b[5] == 'overdue' %}
+                    {% if b[4] and b[4] < today %}
                         <span class="badge badge-overdue">Overdue</span>
                     {% else %}
                         <span class="badge badge-borrowed">Borrowed</span>
@@ -49,11 +47,6 @@
                     <a href="/edit_borrowing/{{ b[0] }}" class="btn-edit">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-                    {% if b[5] != 'returned' %}
-                    <a href="/return_borrowing/{{ b[0] }}" class="btn-edit" style="color:#2f7a2f;">
-                        <i class="fas fa-undo"></i> Return
-                    </a>
-                    {% endif %}
                     <a href="#" class="btn-delete"
    onclick="confirmDelete('/delete_borrowing/{{ b[0] }}')">
     <i class="fas fa-trash"></i> Delete

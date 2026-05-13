@@ -2,60 +2,43 @@
 {% block content %}
 
 <div class="page-header">
-    <h1>Borrowings</h1>
-    <a href="/add_borrowing" class="btn-add">
-        <i class="fas fa-plus"></i> Add Borrowing
+    <h1>Manage Members</h1>
+    <a href="/add_member" class="btn-add">
+        <i class="fas fa-plus"></i> Add Member
     </a>
 </div>
 
 <div class="table-card">
     <div class="table-card-header">
-        <h2>Borrowing List</h2>
+        <h2>Member List</h2>
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search borrowings..." onkeyup="searchTable()">
+            <input type="text" id="searchInput" placeholder="Search members..." onkeyup="searchTable()">
         </div>
     </div>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Book</th>
-                <th>Member</th>
-                <th>Borrow Date</th>
-                <th>Return Date</th>
-                <th>Status</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody id="tableBody">
-            {% for b in borrowings %}
+            {% for member in members %}
             <tr>
-                <td>{{ b[0] }}</td>
-                <td>{{ b[1] }}</td>
-                <td>{{ b[2] }}</td>
-                <td>{{ b[3] }}</td>
-                <td>{{ b[4] }}</td>
+                <td>{{ member[0] }}</td>
+                <td>{{ member[1] }}</td>
+                <td>{{ member[2] }}</td>
+                <td>{{ member[3] }}</td>
                 <td>
-                    {% if b[5] == 'returned' %}
-                        <span class="badge badge-returned">Returned</span>
-                    {% elif b[5] == 'overdue' %}
-                        <span class="badge badge-overdue">Overdue</span>
-                    {% else %}
-                        <span class="badge badge-borrowed">Borrowed</span>
-                    {% endif %}
-                </td>
-                <td>
-                    <a href="/edit_borrowing/{{ b[0] }}" class="btn-edit">
+                    <a href="/edit_member/{{ member[0] }}" class="btn-edit">
                         <i class="fas fa-edit"></i> Edit
                     </a>
-                    {% if b[5] != 'returned' %}
-                    <a href="/return_borrowing/{{ b[0] }}" class="btn-edit" style="color:#2f7a2f;">
-                        <i class="fas fa-undo"></i> Return
-                    </a>
-                    {% endif %}
                     <a href="#" class="btn-delete"
-   onclick="confirmDelete('/delete_borrowing/{{ b[0] }}')">
+   onclick="confirmDelete('/delete_member/{{ member[0] }}')">
     <i class="fas fa-trash"></i> Delete
                    </a>
                 </td>
@@ -65,7 +48,7 @@
     </table>
     <div id="noResults" style="display:none; text-align:center; padding: 40px; color: #999;">
         <i class="fas fa-search" style="font-size:40px; margin-bottom:12px; display:block;"></i>
-        No borrowings found matching your search.
+        No members found matching your search.
     </div>
 </div>
 

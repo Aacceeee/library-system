@@ -10,18 +10,27 @@
 </div>
 
 <div class="form-card">
+    {% if error %}
+    <div style="background:#fdedec; color:#e74c3c; padding:10px 16px; border-radius:8px; margin-bottom:16px; font-size:13px;">
+        <i class="fas fa-exclamation-circle"></i> {{ error }}
+    </div>
+    {% endif %}
     <form method="POST">
         <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" value="{{ member[1] }}">
+            <input type="text" name="name" value="{{ member[1] }}"
+                   oninput="this.value=this.value.replace(/[^a-zA-Z\s]/g,'')" required>
+            <small style="color:#999;">Letters only, no numbers or symbols</small>
         </div>
         <div class="form-group">
             <label>Email</label>
-            <input type="text" name="email" value="{{ member[2] }}">
+            <input type="email" name="email" value="{{ member[2] }}" required>
+            <small style="color:#999;">Must be a valid email (e.g. name@gmail.com)</small>
         </div>
         <div class="form-group">
-            <label>Phone</label>
-            <input type="text" name="phone" value="{{ member[3] }}">
+            <label>Phone <small style="color:#999;">(max 12 digits)</small></label>
+            <input type="text" name="phone" value="{{ member[3] }}"
+                   maxlength="12" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
         </div>
         <button type="submit" class="btn-submit">
             <i class="fas fa-save"></i> Update Member

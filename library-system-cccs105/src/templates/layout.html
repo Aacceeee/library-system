@@ -30,8 +30,33 @@
             </nav>
         </div>
         <div class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash flash-{{ category }}">
+                                <i class="fas fa-check-circle"></i>
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
             {% block content %}{% endblock %}
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const flashMessages = document.querySelectorAll(".flash");
+            flashMessages.forEach(function (message) {
+                setTimeout(function () {
+                    message.classList.add("flash-hide");
+                    setTimeout(function () {
+                        message.remove();
+                    }, 300);
+                }, 2500);
+            });
+        });
+    </script>
 </body>
 </html>

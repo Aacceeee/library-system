@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session
+import re
 import mysql.connector
 from datetime import date
 
@@ -134,8 +135,8 @@ def add_member():
         if not name.replace(" ", "").isalpha():
             error = "Name must contain letters only!"
         # Validate email
-        elif "@" not in email or "." not in email.split("@")[-1]:
-            error = "Please enter a valid email address!"
+        elif not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|ph)$', email):
+    error = "Please enter a valid email address (e.g. name@gmail.com)!""
         # Validate phone
         elif not phone.isdigit():
             error = "Phone number must contain numbers only!"
@@ -154,18 +155,31 @@ def edit_member(id):
     if not session.get("logged_in"):
         return redirect("/")
     cursor = db.cursor()
+    error = None
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
         phone = request.form["phone"]
-        cursor.execute("UPDATE members SET name=%s, email=%s, phone=%s WHERE member_id=%s",
-                      (name, email, phone, id))
-        db.commit()
-        return redirect("/members")
+
+        # Validate name
+        if not name.replace(" ", "").isalpha():
+            error = "Name must contain letters only!"
+        # Validate email properly
+        elif not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|ph)$', email):
+            error = "Please enter a valid email address (e.g. name@gmail.com)!"
+        # Validate phone
+        elif not phone.isdigit():
+            error = "Phone number must contain numbers only!"
+        elif len(phone) > 12:
+            error = "Phone number must not exceed 12 digits!"
+        else:
+            cursor.execute("UPDATE members SET name=%s, email=%s, phone=%s WHERE member_id=%s",
+                          (name, email, phone, id))
+            db.commit()
+            return redirect("/members")
     cursor.execute("SELECT * FROM members WHERE member_id=%s", (id,))
     member = cursor.fetchone()
-    return render_template("edit_member.html", member=member)
-
+    return render_template("edit_member.html", member=member, error=error)
 @app.route("/delete_member/<int:id>")
 def delete_member(id):
     if not session.get("logged_in"):

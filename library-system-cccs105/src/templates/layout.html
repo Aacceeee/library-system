@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-book-open"></i>
+                <span>LIBRARY SYSTEM</span>
+            </div>
+            <nav>
+                <a href="/dashboard" class="{{ 'active' if '/dashboard' in request.path}}">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="/books" class="{{ 'active' if '/books' in request.path }}">
+                    <i class="fas fa-book"></i> Manage Books
+                </a>
+                <a href="/members" class="{{ 'active' if '/members' in request.path }}">
+                    <i class="fas fa-users"></i> Manage Members
+                </a>
+                <a href="/borrowings" class="{{ 'active' if '/borrowings' in request.path }}">
+                    <i class="fas fa-exchange-alt"></i> Borrowings
+                </a>
+            </nav>
+        </div>
+        <div class="main-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash flash-{{ category }}">
+                                <i class="fas fa-check-circle"></i>
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const flashMessages = document.querySelectorAll(".flash");
+            flashMessages.forEach(function (message) {
+                setTimeout(function () {
+                    message.classList.add("flash-hide");
+                    setTimeout(function () {
+                        message.remove();
+                    }, 300);
+                }, 2500);
+            });
+        });
+    </script>
+
+    <!-- DELETE MODAL -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+        <div class="modal-icon">
+            <i class="fas fa-trash-alt"></i>
+        </div>
+        <div class="modal-title">Are you sure?</div>
+        <div class="modal-message">This action cannot be undone. The record will be permanently deleted.</div>
+        <div class="modal-buttons">
+            <button class="modal-cancel" onclick="closeModal()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+            <a id="confirmDelete" href="#" class="modal-confirm">
+                <i class="fas fa-trash"></i> Yes, Delete
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+function confirmDelete(url) {
+    document.getElementById('confirmDelete').href = url;
+    document.getElementById('deleteModal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('deleteModal').classList.remove('active');
+}
+
+document.getElementById('deleteModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>

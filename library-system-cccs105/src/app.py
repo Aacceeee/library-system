@@ -1,21 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import mysql.connector
 from datetime import date
-import os
 
-template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
-static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static'))
-
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
-
-
-@app.route("/__diag")
-def diag():
-    return {
-        "url_map": str(app.url_map),
-        "template_searchpath": app.jinja_loader.searchpath,
-        "cwd": os.getcwd(),
-    }
+app = Flask(__name__)
+app.secret_key = "library123"
 
 db = mysql.connector.connect(
     host="localhost",
@@ -24,19 +12,35 @@ db = mysql.connector.connect(
     database="cccs105"
 )
 
+# LOGIN
+@app.route("/", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if username == "admin" and password == "admin123":
+            session["logged_in"] = True
+            return redirect("/welcome")
+        else:
+            error = "Invalid username or password!"
+    return render_template("login.html", error=error)
 
-@app.route("/")
-def home():
-    return redirect("/welcome")
-
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
 
 @app.route("/welcome")
 def welcome():
+    if not session.get("logged_in"):
+        return redirect("/")
     return render_template("welcome.html")
 
-
 @app.route("/dashboard")
-def dashboard():
+def home():
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("SELECT COUNT(*) FROM books")
     total_books = cursor.fetchone()[0]
@@ -48,17 +52,17 @@ def dashboard():
     overdue = cursor.fetchone()[0]
     cursor.execute("SELECT * FROM books")
     books = cursor.fetchall()
-    return render_template(
-        "index.html",
-        total_books=total_books,
-        total_members=total_members,
-        total_borrowings=total_borrowings,
-        overdue=overdue,
-        books=books,
-    )
+    return render_template("index.html",
+                           total_books=total_books,
+                           total_members=total_members,
+                           total_borrowings=total_borrowings,
+                           overdue=overdue,
+                           books=books)
 
 @app.route("/books")
 def books():
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("SELECT * FROM books")
     books = cursor.fetchall()
@@ -66,6 +70,8 @@ def books():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+    if not session.get("logged_in"):
+        return redirect("/")
     if request.method == "POST":
         title = request.form["title"]
         author = request.form["author"]
@@ -80,6 +86,8 @@ def add_book():
 
 @app.route("/edit_book/<int:id>", methods=["GET", "POST"])
 def edit_book(id):
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     if request.method == "POST":
         title = request.form["title"]
@@ -96,6 +104,8 @@ def edit_book(id):
 
 @app.route("/delete_book/<int:id>")
 def delete_book(id):
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("DELETE FROM books WHERE book_id=%s", (id,))
     db.commit()
@@ -103,6 +113,8 @@ def delete_book(id):
 
 @app.route("/members")
 def members():
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("SELECT * FROM members")
     members = cursor.fetchall()
@@ -110,6 +122,8 @@ def members():
 
 @app.route("/add_member", methods=["GET", "POST"])
 def add_member():
+    if not session.get("logged_in"):
+        return redirect("/")
     if request.method == "POST":
         name = request.form["name"]
         email = request.form["email"]
@@ -123,6 +137,8 @@ def add_member():
 
 @app.route("/edit_member/<int:id>", methods=["GET", "POST"])
 def edit_member(id):
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     if request.method == "POST":
         name = request.form["name"]
@@ -138,6 +154,8 @@ def edit_member(id):
 
 @app.route("/delete_member/<int:id>")
 def delete_member(id):
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("DELETE FROM members WHERE member_id=%s", (id,))
     db.commit()
@@ -145,6 +163,8 @@ def delete_member(id):
 
 @app.route("/borrowings")
 def borrowings():
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("""
         SELECT b.borrow_id, bk.title, m.name, b.borrow_date, b.return_date
@@ -157,6 +177,8 @@ def borrowings():
 
 @app.route("/add_borrowing", methods=["GET", "POST"])
 def add_borrowing():
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     if request.method == "POST":
         book_id = request.form["book_id"]
@@ -175,6 +197,8 @@ def add_borrowing():
 
 @app.route("/edit_borrowing/<int:id>", methods=["GET", "POST"])
 def edit_borrowing(id):
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     if request.method == "POST":
         book_id = request.form["book_id"]
@@ -195,6 +219,8 @@ def edit_borrowing(id):
 
 @app.route("/delete_borrowing/<int:id>")
 def delete_borrowing(id):
+    if not session.get("logged_in"):
+        return redirect("/")
     cursor = db.cursor()
     cursor.execute("DELETE FROM borrowings WHERE borrow_id=%s", (id,))
     db.commit()

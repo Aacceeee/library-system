@@ -37,6 +37,44 @@ Libraries struggle with several key challenges:
 * Data accessibility — Information scattered across different systems
 * Report generation — Difficult to generate borrowing statistics and overdue reports
 
+# Scope
+
+## What is Included
+
+- User authentication and login system
+- Complete CRUD operations for books, members, and borrowing records
+- Search functionality to find books and members
+- Real-time inventory tracking
+- Borrowing transaction management
+- Data validation and error handling
+
+---
+
+## What is NOT Included
+
+- Email notifications for overdue books
+- Mobile application
+- Advanced analytics and reporting
+- Payment processing for fines
+- Book recommendation system
+
+---
+
+# Target Users
+
+## Librarians / Staff
+Use the system to:
+- Manage book inventory
+- Register members
+- Process borrowing transactions
+
+---
+
+## Library Administrators
+Use the system to:
+- Monitor library operations
+- Ensure system efficiency through the admin dashboard
+
 # Database Models
 
 ## Entity Relationship Diagram (ERD)

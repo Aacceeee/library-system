@@ -1,5 +1,10 @@
-
-__pycache__
+__pycache__/
 *.pyc
+*.py[cod]
+*.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
 library-system-cccs105/
-

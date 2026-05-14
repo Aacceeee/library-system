@@ -67,3 +67,70 @@ The application follows the **MVC (Model-View-Controller)** architectural patter
 5. **Search Engine** — Find books and members by various criteria
 6. **Database Layer** — MySQL connectivity and data queries
 7. **User Interface** — Responsive web pages for all operations
+
+## Setup Instructions
+
+### Prerequisites
+
+* Python 3.8 or higher
+* XAMPP (for MySQL and Apache)
+* Git (for version control)
+* Web browser (Chrome, Firefox, Edge, Safari)
+* Text editor or IDE (VS Code recommended)
+
+### Step-by-Step Installation
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/library-system-cccs105.git
+cd library-system-cccs105
+```
+
+#### 2. Set Up Virtual Environment (Optional but Recommended)
+
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Mac/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 4. Start XAMPP Services
+
+1. Open XAMPP Control Panel
+2. Start **Apache** (if needed for future features)
+3. Start **MySQL**
+4. Verify both are running (green indicators)
+
+#### 5. Configure & Import Database
+
+1. Open your browser and go to `http://localhost/phpmyadmin`
+2. Click **"New"** on the left sidebar
+3. Create new database: `cccs105`
+4. Click on the new `cccs105` database
+5. Click **"Import"** tab
+6. Select `database/schema.sql` from your project folder
+7. Click **"Go"** to create tables
+8. (Optional) Import `database/initial_data.sql` for sample data
+
+#### 6. Set Environment Variables
+
+No additional environment variables needed for this project (all defaults are configured)
+
+#### 7. Run the Application
+
+```bash
+python app.py
+```
+
+You should see:

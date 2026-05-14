@@ -182,3 +182,28 @@ Open your web browser and go to: http://127.0.0.1:5000
 * Username: admin
 * Password: admin123
 
+### Navigation Guide
+
+**Dashboard** — View system statistics:
+* Total books in inventory
+* Total registered members
+* Books currently borrowed
+* Overdue books
+
+**Manage Books** — Complete book inventory management:
+* View all books with search functionality
+* Add new books to the library
+* Edit book information
+* Delete books from inventory
+
+**Manage Members** — Handle member registrations:
+* View all registered members with search
+* Register new members (name, email, phone)
+* Update member information
+* Remove member records
+
+**Borrowings** — Track borrowing transactions:
+* View all borrowing records with status
+* Create new borrowing records
+* Update return dates
+* Delete borrowing records

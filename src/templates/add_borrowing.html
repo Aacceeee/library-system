@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<a href="/borrowings" class="btn-back">
+    <i class="fas fa-arrow-left"></i> Back to Borrowings
+</a>
+
+<div class="page-header">
+    <h1>Add New Borrowing</h1>
+</div>
+
+<div class="form-card form-card-large">
+    {% if error %}
+    <div class="flash flash-error" style="margin-bottom:16px;">
+        <i class="fas fa-exclamation-circle"></i> {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        <div class="book-form-stack">
+            <div class="field">
+                <label>BOOK</label>
+                <select name="book_id" required>
+                    {% for book in books %}
+                        <option value="{{ book[0] }}">{{ book[1] }} (Qty: {{ book[4] }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label>MEMBER</label>
+                <select name="member_id" required>
+                    {% for member in members %}
+                        <option value="{{ member[0] }}">{{ member[1] }} ({{ member[2] }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="field">
+                <label>BORROW DATE</label>
+                <input type="date" name="borrow_date" required>
+            </div>
+
+            <div class="field">
+                <label>RETURN DATE</label>
+                <input type="date" name="return_date" required>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit" style="transform: translateY(0);">
+                <i class="fas fa-plus"></i> Add Borrowing
+            </button>
+        </div>
+
+
+    </form>
+</div>
+
+{% endblock %}
+

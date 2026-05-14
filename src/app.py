@@ -56,10 +56,10 @@ def login():
             error = "Invalid username or password!"
     return render_template("login.html", error=error)
 
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect("/")
+# (duplicate /logout route removed)
+
+
+
 
 @app.route("/welcome")
 def welcome():
@@ -454,6 +454,11 @@ def delete_borrowing(id):
     cursor.execute("DELETE FROM borrowings WHERE borrow_id=%s", (id,))
     db.commit()
     return redirect("/borrowings")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)

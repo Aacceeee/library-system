@@ -36,3 +36,34 @@ Libraries struggle with several key challenges:
 * Borrowing records — Hard to track who borrowed which books and when
 * Data accessibility — Information scattered across different systems
 * Report generation — Difficult to generate borrowing statistics and overdue reports
+
+
+
+
+
+## Project Overview
+
+### Architecture & Design Pattern
+
+The application follows the **MVC (Model-View-Controller)** architectural pattern:
+
+- **Model** — MySQL database and Python business logic handle data management
+- **View** — HTML templates render the user interface
+- **Controller** — Python Flask routes manage user requests and responses
+
+### Technology Stack
+
+- **Backend**: Python 3.x with Flask framework
+- **Database**: MySQL (via XAMPP)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Server**: Flask development server (localhost:5000)
+
+### Key Components
+
+1. **Authentication Module** — Admin login system with session management
+2. **Book Management** — CRUD operations for library books
+3. **Member Management** — Register and manage library members
+4. **Borrowing Module** — Track book borrowing and returns
+5. **Search Engine** — Find books and members by various criteria
+6. **Database Layer** — MySQL connectivity and data queries
+7. **User Interface** — Responsive web pages for all operations

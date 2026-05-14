@@ -1,0 +1,11 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Local accidental nested repo copy
+library-system-cccs105/

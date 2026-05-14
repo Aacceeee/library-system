@@ -37,9 +37,9 @@ Libraries struggle with several key challenges:
 * Data accessibility — Information scattered across different systems
 * Report generation — Difficult to generate borrowing statistics and overdue reports
 
-# Scope
+## Scope
 
-## What is Included
+### What is Included
 
 - User authentication and login system
 - Complete CRUD operations for books, members, and borrowing records
@@ -50,7 +50,7 @@ Libraries struggle with several key challenges:
 
 ---
 
-## What is NOT Included
+### What is NOT Included
 
 - Email notifications for overdue books
 - Mobile application
@@ -60,7 +60,7 @@ Libraries struggle with several key challenges:
 
 ---
 
-# Target Users
+## Target Users
 
 ## Librarians / Staff
 Use the system to:
@@ -70,20 +70,20 @@ Use the system to:
 
 ---
 
-## Library Administrators
+### Library Administrators
 Use the system to:
 - Monitor library operations
 - Ensure system efficiency through the admin dashboard
 
-# Database Models
+## Database Models
 
-## Entity Relationship Diagram (ERD)
+### Entity Relationship Diagram (ERD)
 
 ![ERD Diagram](docs/diagrams/ERD.png)
 
 ---
 
-## Entity Descriptions
+### Entity Descriptions
 
 ### BOOKS
 Represents all books in the library inventory.
@@ -119,13 +119,13 @@ Records the transactions between members and books.
 - One book can appear in many borrowings `(1:N)`
 - `BORROWINGS` acts as a junction table connecting `MEMBERS` and `BOOKS`
 
-# Relational Model
+## Relational Model
 
 ![Relational Model](docs/diagrams/RM.png)
 
 ---
 
-## Table Specifications
+### Table Specifications
 
 | Table | Attributes | Data Types | Primary Key |
 |-------|------------|------------|--------------|
@@ -135,14 +135,14 @@ Records the transactions between members and books.
 
 ---
 
-## Foreign Key Relationships
+### Foreign Key Relationships
 
 - `BORROWINGS.book_id` references `BOOKS(book_id)`
 - `BORROWINGS.member_id` references `MEMBERS(member_id)`
 
 ---
 
-## Relationship Summary
+### Relationship Summary
 
 - One member can have many borrowings `(1:N)`
 - One book can appear in many borrowings `(1:N)`

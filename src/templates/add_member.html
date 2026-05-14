@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<a href="/members" class="btn-back">
+    <i class="fas fa-arrow-left"></i> Back to Members
+</a>
+
+<div class="page-header">
+    <h1>Add New Member</h1>
+</div>
+
+<div class="form-card form-card-large">
+    {% if error %}
+    <div style="background:#fdedec; color:#e74c3c; padding:10px 16px; border-radius:8px; margin-bottom:16px; font-size:13px;">
+        <i class="fas fa-exclamation-circle"></i> {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        <div class="book-form-stack">
+            <div class="field">
+                <label>NAME</label>
+                <input type="text" name="name" placeholder="Enter full name" required
+                       oninput="this.value=this.value.replace(/[^a-zA-Z\s]/g,'')">
+                <small class="help">Letters only, no numbers or symbols</small>
+            </div>
+
+            <div class="field">
+                <label>EMAIL</label>
+                <input type="email" name="email" placeholder="Enter email address" required>
+                <small class="help">Must be a valid email (e.g. name@gmail.com)</small>
+            </div>
+
+            <div class="field">
+                <label>PHONE</label>
+                <input type="text" name="phone" placeholder="Enter phone number" required maxlength="12"
+                       oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                <small class="help">Digits only (max 12)</small>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit" style="transform: translateY(0);">
+                <i class="fas fa-plus"></i> Add Member
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
+

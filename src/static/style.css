@@ -213,8 +213,8 @@ body {
 .btn-add {
     background-color: #b5851a;
     color: #fff8ec;
-    padding: 9px 18px;
-    border-radius: 8px;
+    padding: 11px 22px;
+    border-radius: 10px;
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
@@ -223,6 +223,7 @@ body {
     gap: 6px;
     transition: background 0.2s;
 }
+
 
 .btn-add:hover {
     background-color: #d4a030;
@@ -372,15 +373,16 @@ tbody tr:hover {
 .btn-submit {
     background-color: #1e1209;
     color: #f0c87a;
-    padding: 11px 28px;
+    padding: 13px 30px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: background 0.2s;
 }
+
 
 .form-card form {
     display: grid;
@@ -412,6 +414,119 @@ tbody tr:hover {
     color: #1e1209;
     background: #f7f0e3;
     border-color: #d4bc96;
+}
+
+/* ADD FORMS */
+.form-card-large {
+    background: #fff;
+    border: 1px solid #ecd7bc;
+    border-radius: 18px;
+    padding: 36px 44px 40px;
+    max-width: 780px;
+    box-shadow: 0 10px 30px rgba(30, 18, 9, 0.06);
+}
+
+.form-card-large .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 24px;
+}
+
+.form-card-large .book-form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-card-large .book-form-stack .field {
+    width: 100%;
+}
+
+.form-card-large .book-form-stack .field input,
+.form-card-large .book-form-stack .field select {
+    width: 100%;
+}
+
+.form-card-large .field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-card-large .field label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #2f1b0d;
+    text-transform: uppercase;
+}
+
+.form-card-large .field input,
+.form-card-large .field select {
+    width: 100%;
+    min-height: 58px;
+    padding: 14px 18px;
+    border: 2px solid #d8b88a;
+    border-radius: 14px;
+    background: #fff;
+    color: #3b2514;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.form-card-large .field input::placeholder {
+    color: #a98969;
+}
+
+.form-card-large .field input:focus,
+.form-card-large .field select:focus {
+    border-color: #b5851a;
+    box-shadow: 0 0 0 3px rgba(181, 133, 26, 0.12);
+}
+
+.form-card-large .field small.help {
+    display: block;
+    margin-top: 8px;
+    color: #8a6a45;
+    font-size: 12px;
+}
+
+.form-card-large .form-actions {
+    margin-top: 26px;
+}
+
+.form-card-large .btn-submit,
+.form-card-large .btn-add {
+    background: #1e1209;
+    color: #f0c87a;
+    padding: 13px 28px;
+    border: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 18px rgba(30, 18, 9, 0.12);
+}
+
+.form-card-large .btn-submit:hover,
+.form-card-large .btn-add:hover {
+    background: #2e1d0e;
+}
+
+.form-card-large .flash-error {
+    margin-bottom: 18px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 4px 0 22px;
 }
 
 /* SEARCH BOX */

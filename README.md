@@ -207,3 +207,19 @@ Open your web browser and go to: http://127.0.0.1:5000
 * Create new borrowing records
 * Update return dates
 * Delete borrowing records
+
+### Main Features
+
+1. **Search** — Use search bars on each page to filter records
+2. **Add Records** — Click "Add" buttons to create new entries
+3. **Edit Records** — Click "Edit" to modify existing information
+4. **Delete Records** — Click "Delete" with confirmation modal
+5. **Logout** — Click logout button in sidebar to end session
+
+## Additional Notes
+
+* The application uses a warm brown and gold theme for a library aesthetic
+* All dates should be in YYYY-MM-DD format
+* Phone numbers are limited to 12 digits
+* Emails must follow standard format (example@domain.com)
+* Ensure MySQL is always running before accessing the application

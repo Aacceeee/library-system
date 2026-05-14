@@ -133,8 +133,8 @@ No additional environment variables needed for this project (all defaults are co
 python app.py
 ```
 
-You should see:
+You should see: `* Running on http://127.0.0.1:5000`
 
 #### 8. Access the Application
 
-Open your web browser and go to:
+Open your web browser and go to: http://127.0.0.1:5000

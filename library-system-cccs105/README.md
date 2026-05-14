@@ -62,7 +62,7 @@ Libraries struggle with several key challenges:
 
 ## Target Users
 
-## Librarians / Staff
+### Librarians / Staff
 Use the system to:
 - Manage book inventory
 - Register members

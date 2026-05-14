@@ -146,3 +146,19 @@ Open your web browser and go to: http://127.0.0.1:5000
 | Calvelo, Mark Paul B. | Developer | Coding, UI design, database design, ERD/RM diagrams, README documentation |
 | Evangelista, Marc Ace T. | Developer | Coding, Feature testing, suggesting error handling implementations, code review |
 | Lerio, Janline B. | UI/UX Designer | UI design, adding sample members and books data, frontend improvements |
+
+## Dependencies
+
+### Python Packages
+
+* **Flask** 2.3.0 — Web framework
+* **mysql-connector-python** 8.0.33 — MySQL database connectivity
+
+### System Requirements
+
+* **Operating System:** Windows 10/11, macOS 10.14+, or Linux (Ubuntu 18.04+)
+* **Python Version:** 3.8 or higher
+* **MySQL Version:** 5.7 or higher
+* **Browser:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+* **RAM:** Minimum 2GB
+* **Disk Space:** Minimum 500MB

@@ -87,7 +87,7 @@ git clone https://github.com/YOUR-USERNAME/library-system-cccs105.git
 cd library-system-cccs105
 ```
 
-#### 2. Set Up Virtual Environment (Optional but Recommended)
+#### 2. Set Up Virtual Environment
 
 ```bash
 # Windows
@@ -134,3 +134,7 @@ python app.py
 ```
 
 You should see:
+
+#### 8. Access the Application
+
+Open your web browser and go to:

@@ -41,7 +41,7 @@ Libraries struggle with several key challenges:
 
 ### What is Included
 
-- User authentication and login system
+- Admin authentication and login system
 - Complete CRUD operations for books, members, and borrowing records
 - Search functionality to find books and members
 - Real-time inventory tracking

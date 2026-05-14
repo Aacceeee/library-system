@@ -83,7 +83,7 @@ Records the transactions between members and books.
 
 # Relational Model
 
-![Relational Model](docs/diagrams/rm.png)
+![Relational Model](docs/diagrams/RM.png)
 
 ---
 

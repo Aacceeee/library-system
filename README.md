@@ -179,6 +179,6 @@ Open your web browser and go to: http://127.0.0.1:5000
 
 ### Default Login Credentials
 
-*Username: admin
-*Password: admin123
+* Username: admin
+* Password: admin123
 

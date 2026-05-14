@@ -151,7 +151,7 @@ Open your web browser and go to: http://127.0.0.1:5000
 
 ### Python Packages
 
-* **Flask** 2.3.0 — Web framework
+* **Flask** 3.1.3 — Web framework
 * **mysql-connector-python** 8.0.33 — MySQL database connectivity
 
 ### System Requirements
@@ -162,3 +162,17 @@ Open your web browser and go to: http://127.0.0.1:5000
 * **Browser:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
 * **RAM:** Minimum 2GB
 * **Disk Space:** Minimum 500MB
+
+## Running Instructions
+
+### Starting the Application
+
+1. Start XAMPP (MySQL must be running)
+2. Navigate to project directory in terminal
+3. Run: `python app.py`
+4. Open browser to: `http://127.0.0.1:5000`
+
+### Stopping the Application
+
+1. Press `Ctrl + C` in the terminal running Flask
+2. Stop MySQL in XAMPP Control Panel

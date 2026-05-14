@@ -70,6 +70,147 @@ Use the system to:
 
 ---
 
+## Project Objectives
+
+### Primary Objective
+
+Develop a functional web-based Library Management System that enables librarians to efficiently manage books, members, and borrowing transactions through a user-friendly interface connected to a MySQL database.
+
+---
+
+### Secondary Objectives
+
+#### Database Connectivity
+Establish reliable connection to a MySQL database for data persistence.
+
+#### User Interface
+Create an intuitive and responsive user interface that is easy for non-technical users.
+
+#### Data Management
+Implement complete CRUD (Create, Read, Update, Delete) operations for all core entities.
+
+#### Search Functionality
+Enable quick retrieval of books and member records.
+
+#### Authentication & Security
+Implement a login system to secure database access.
+
+#### Data Validation
+Ensure data integrity through comprehensive validation rules.
+
+#### Error Handling
+Provide meaningful error messages and graceful error recovery.
+
+---
+
+## Business Rules
+
+### Detailed Business Logic
+
+#### User Authentication
+- Only authorized administrators/librarians can log in using valid credentials
+- Default login credentials:
+  - Username: `admin`
+  - Password: `admin123`
+- Session management ensures the admin remains logged in during the active session
+- Unauthorized access is prevented through login validation
+
+---
+
+#### Database Connection Settings
+- Database: `cccs105`
+- Host: `localhost`
+- Port: `3306`
+- Username: `root`
+- Password: `(empty/default XAMPP)`
+
+---
+
+#### CRUD Operation Constraints
+- Book titles cannot be empty
+- Member names must contain letters only (no numbers or symbols)
+- Member email must follow valid email format
+- Phone numbers must contain numeric values only
+- Phone numbers must not exceed 12 digits
+- Borrow date is mandatory for all borrowing records
+- Quantity must be a positive integer
+
+---
+
+#### Data Validation Rules
+- Email validation:
+  - Must contain `@`
+  - Must include a valid domain extension such as `.com`, `.net`, or `.org`
+- Phone validation:
+  - Numeric input only
+  - Maximum of 12 digits
+- Name validation:
+  - Letters and spaces only
+  - No special characters
+- Title validation:
+  - Cannot be empty
+- Date validation:
+  - Borrow date must be valid and not in the future
+
+---
+
+#### Access Control Levels
+- Only authenticated admins can access the system
+- Admin has full access to all features and CRUD operations
+- Admin can manage:
+  - Books
+  - Members
+  - Borrowing records
+- No role-based restrictions or user hierarchy implemented
+
+---
+
+## Constraints
+
+### Technical Constraints
+- Requires:
+  - XAMPP
+  - Python 3.x
+  - MySQL database
+
+---
+
+### Operational Constraints
+- Single authenticated admin session at a time
+
+---
+
+### Data Constraints
+- Phone numbers limited to 12 digits maximum
+
+---
+
+### Performance Constraints
+- System optimized for small to medium-sized library operations
+
+---
+
+## Conditions
+
+### Session Handling
+- Sessions expire after browser closure
+
+---
+
+### Login Attempts
+- No limit on login attempts
+- Feature may be implemented in future versions
+
+---
+
+### Data Persistence
+- All changes are immediately saved to the database
+
+---
+
+### Concurrent Access
+- System designed primarily for single-user sessions
+
 ### Library Administrators
 Use the system to:
 - Monitor library operations

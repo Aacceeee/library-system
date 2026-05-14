@@ -23,9 +23,9 @@
 
 ### Background
 
-The Library Management System is a web-based application designed to streamline the operations of a library. Libraries today face challenges in managing their book inventory, member registrations, and borrowing transactions manually. This application provides an efficient, digital solution to automate these processes and improve accessibility for both librarians and members.
+The Library Management System is a web-based application designed to streamline the operations of a library. Libraries today face challenges in managing their book inventory, member registrations, and borrowing transactions manually. This application provides an efficient, digital solution to automate these processes and improve accessibility for librarians.
 
-The system addresses the need for a centralized platform where librarians can easily manage books, track member information, and monitor borrowing activities in real-time. By automating these tasks, the application reduces human error, saves time, and enhances the overall efficiency of library operations.
+The system addresses the need for a centralized platform where librarians can easily manage books, track member information, and monitor borrowing activities. By automating these tasks, the application reduces human error, saves time, and enhances the overall efficiency of library operations.
 
 ### Problem Statement
 

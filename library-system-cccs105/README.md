@@ -81,6 +81,35 @@ Records the transactions between members and books.
 - One book can appear in many borrowings `(1:N)`
 - `BORROWINGS` acts as a junction table connecting `MEMBERS` and `BOOKS`
 
+# Relational Model
+
+![Relational Model](docs/diagrams/rm.png)
+
+---
+
+## Table Specifications
+
+| Table | Attributes | Data Types | Primary Key |
+|-------|------------|------------|--------------|
+| **BOOKS** | `book_id`, `title`, `author`, `genre`, `quantity` | `INT`, `VARCHAR(255)`, `VARCHAR(255)`, `VARCHAR(100)`, `INT` | `book_id` |
+| **MEMBERS** | `member_id`, `name`, `email`, `phone` | `INT`, `VARCHAR(255)`, `VARCHAR(255)`, `VARCHAR(12)` | `member_id` |
+| **BORROWINGS** | `borrow_id`, `book_id`, `member_id`, `borrow_date`, `return_date` | `INT`, `INT`, `INT`, `DATE`, `DATE` | `borrow_id` |
+
+---
+
+## Foreign Key Relationships
+
+- `BORROWINGS.book_id` references `BOOKS(book_id)`
+- `BORROWINGS.member_id` references `MEMBERS(member_id)`
+
+---
+
+## Relationship Summary
+
+- One member can have many borrowings `(1:N)`
+- One book can appear in many borrowings `(1:N)`
+- `BORROWINGS` serves as the transaction table connecting `BOOKS` and `MEMBERS`
+
 ## Project Overview
 
 ### Architecture & Design Pattern

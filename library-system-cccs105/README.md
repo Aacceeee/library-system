@@ -37,9 +37,49 @@ Libraries struggle with several key challenges:
 * Data accessibility — Information scattered across different systems
 * Report generation — Difficult to generate borrowing statistics and overdue reports
 
+# Database Models
 
+## Entity Relationship Diagram (ERD)
 
+![ERD Diagram](docs/diagrams/ERD.png)
 
+---
+
+## Entity Descriptions
+
+### BOOKS
+Represents all books in the library inventory.
+
+- Stores book title, author, genre, and available quantity
+- Primary Key: `book_id`
+
+---
+
+### MEMBERS
+Represents all registered library members.
+
+- Stores member name, email, and phone number
+- Primary Key: `member_id`
+
+---
+
+### BORROWINGS
+Records the transactions between members and books.
+
+- Links members to books through borrowing records
+- Tracks borrow date and return date
+- Primary Key: `borrow_id`
+- Foreign Keys:
+  - `book_id` references `BOOKS(book_id)`
+  - `member_id` references `MEMBERS(member_id)`
+
+---
+
+## Relationships
+
+- One member can have many borrowings `(1:N)`
+- One book can appear in many borrowings `(1:N)`
+- `BORROWINGS` acts as a junction table connecting `MEMBERS` and `BOOKS`
 
 ## Project Overview
 

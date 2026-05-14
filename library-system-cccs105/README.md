@@ -68,6 +68,11 @@ Use the system to:
 - Register members
 - Process borrowing transactions
 
+### Library Administrators
+Use the system to:
+- Monitor library operations
+- Ensure system efficiency through the admin dashboard
+
 ---
 
 ## Project Objectives
@@ -210,11 +215,6 @@ Provide meaningful error messages and graceful error recovery.
 
 ### Concurrent Access
 - System designed primarily for single-user sessions
-
-### Library Administrators
-Use the system to:
-- Monitor library operations
-- Ensure system efficiency through the admin dashboard
 
 ## Database Models
 

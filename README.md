@@ -176,3 +176,9 @@ Open your web browser and go to: http://127.0.0.1:5000
 
 1. Press `Ctrl + C` in the terminal running Flask
 2. Stop MySQL in XAMPP Control Panel
+
+### Default Login Credentials
+
+*Username: admin
+*Password: admin123
+

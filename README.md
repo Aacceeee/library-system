@@ -138,3 +138,11 @@ You should see: `* Running on http://127.0.0.1:5000`
 #### 8. Access the Application
 
 Open your web browser and go to: http://127.0.0.1:5000
+
+## Team Members & Roles
+
+| Member Name | Role | Responsibilities |
+|-------------|------|------------------|
+| Calvelo, Mark Paul B. | Developer | Coding, UI design, database design, ERD/RM diagrams, README documentation |
+| Evangelista, Marc Ace T. | Developer | Coding, Feature testing, suggesting error handling implementations, code review |
+| Lerio, Janline B. | UI/UX Designer | UI design, adding sample members and books data, frontend improvements |

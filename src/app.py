@@ -203,10 +203,17 @@ def edit_book(id):
 def delete_book(id):
     if not session.get("logged_in"):
         return redirect("/")
+
     cursor = db.cursor()
+
+    # FK constraint prevents deleting a book if it is referenced by borrowings.
+    # Delete related borrowings first.
+    cursor.execute("DELETE FROM borrowings WHERE book_id=%s", (id,))
     cursor.execute("DELETE FROM books WHERE book_id=%s", (id,))
+
     db.commit()
     return redirect("/books")
+
 
 @app.route("/members")
 def members():
@@ -461,4 +468,4 @@ def logout():
     return redirect("/")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)

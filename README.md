@@ -16,7 +16,7 @@
 7. [Team Members & Roles](#team-members--roles)
 8. [Dependencies](#dependencies)
 9. [Running Instructions](#running-instructions)
-10. [Video Presentation Link](#video-presentation-ink)
+10. [Video Presentation Link](#video-presentation-link)
 
 ---
 
@@ -469,7 +469,7 @@ Open your web browser and go to: http://127.0.0.1:5000
 
 * The application uses a warm brown and gold theme for a library aesthetic
 * All dates should be in YYYY-MM-DD format
-* Phone numbers are limited to 12 digits
+* Phone numbers are limited to 12 digits 
 * Emails must follow standard format (example@domain.com)
 * Ensure MySQL is always running before accessing the application
 

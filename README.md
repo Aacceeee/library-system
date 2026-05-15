@@ -16,7 +16,7 @@
 7. [Team Members & Roles](#team-members--roles)
 8. [Dependencies](#dependencies)
 9. [Running Instructions](#running-instructions)
-10. [Video Presentation Link](#Video-presentation-ink)
+10. [Video Presentation Link](#video-presentation-ink)
 
 ---
 

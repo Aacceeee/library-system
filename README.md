@@ -474,4 +474,4 @@ Open your web browser and go to: http://127.0.0.1:5000
 * Ensure MySQL is always running before accessing the application
 
 ## Video Presentation Link
-* https://youtu.be/lFSKFd3n76Q
+* https://drive.google.com/drive/folders/1EhEsGZtZtdfhEvqIAu7Ac6cXEYalxdd2?usp=sharing

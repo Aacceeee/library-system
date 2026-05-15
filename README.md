@@ -16,6 +16,7 @@
 7. [Team Members & Roles](#team-members--roles)
 8. [Dependencies](#dependencies)
 9. [Running Instructions](#running-instructions)
+10. [Video Presentation Link](#Video-presentation-ink)
 
 ---
 
@@ -472,3 +473,5 @@ Open your web browser and go to: http://127.0.0.1:5000
 * Emails must follow standard format (example@domain.com)
 * Ensure MySQL is always running before accessing the application
 
+## Video Presentation Link
+* https://youtu.be/lFSKFd3n76Q
